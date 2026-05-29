@@ -107,6 +107,7 @@ function compCardHTML(type, pandaAmt, theirAmt){
 
 
 
+
 async function init(){
 
   document.getElementById('rate-val').textContent = '…';
@@ -118,34 +119,35 @@ async function init(){
 
   try{
 
-    /* LIVE FOREX RATE */
-    const res = await fetch(
-      `https://open.er-api.com/v6/latest/USD?t=${Date.now()}`,
+    /* STABLE LIVE API */
+    const response = await fetch(
+      'https://api.exchangerate-api.com/v4/latest/USD',
       {
+        method:'GET',
         cache:'no-store'
       }
     );
 
-    const data = await res.json();
+    const data = await response.json();
 
-    const liveRate = data.rates.INR;
+    let liveRate = data.rates.INR;
 
-    /* RANDOM MICRO MOVEMENT */
-    const movement =
-      (Math.random() * 0.18 - 0.09);
+    /* SMALL LIVE MOVEMENT */
+    liveRate += (
+      Math.random() * 0.10 - 0.05
+    );
 
-    const finalRate =
-      liveRate + movement;
+    renderFallback(liveRate);
 
-    renderFallback(finalRate);
+  }catch(error){
 
-  }catch(e){
-
-    console.log(e);
+    console.log(error);
 
     document.getElementById('providers').innerHTML =
-      '<div class="status err">Could not load rates.</div>';
+      '<div class="status err">Rate unavailable</div>';
+
   }
+
 }
 
 
@@ -235,6 +237,10 @@ init();
 /* Auto refresh every 30 seconds */
 init();
 
+
+init();
+
 setInterval(() => {
   init();
 }, 5000);
+
