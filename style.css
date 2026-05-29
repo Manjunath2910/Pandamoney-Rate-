@@ -1,0 +1,366 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#111;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  padding:2rem;
+}
+
+/* Story */
+.story{
+  width:390px;
+  height:693px;
+  background:#060d0b;
+  border-radius:32px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+.story::before{
+  content:'';
+  position:absolute;
+  top:-80px;
+  right:-100px;
+  width:420px;
+  height:420px;
+  background:radial-gradient(circle, rgba(14,68,40,0.75) 0%, transparent 65%);
+  border-radius:50%;
+  z-index:0;
+}
+
+.story::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:160px;
+  background:linear-gradient(to top, rgba(6,13,11,0.6), transparent);
+  z-index:0;
+}
+
+.content{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  padding:36px 22px 24px;
+}
+
+/* Headline */
+.headline{
+  font-size:26px;
+  font-weight:500;
+  line-height:1.22;
+  text-align:center;
+  color:#a4b2ae;
+  margin-bottom:20px;
+  letter-spacing:-0.5px;
+}
+
+.headline b{
+  color:#fffcf5;
+  font-weight:800;
+}
+
+/* Badge */
+
+.hex-badge{
+  position:absolute;
+  top:106px;
+  right:2px;
+  width:95px;
+  height:95px;
+  z-index:30;
+  pointer-events:none;
+  
+}
+
+.hex-badge svg{
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+
+
+/* Google card */
+.google-card{
+  background:#0c1a15;
+  border-radius:20px;
+  padding:14px 0 16px;
+  margin-bottom:14px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+
+.google-tag-row{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.green-dot{
+  width:7px;
+  height:7px;
+  background:#34a853;
+  border-radius:50%;
+}
+
+.google-wordmark{
+  font-size:14px;
+  font-weight:700;
+  line-height:1;
+}
+
+.g1{ color:#4285f4; }
+.g2{ color:#ea4335; }
+.g3{ color:#fbbc05; }
+.g4{ color:#4285f4; }
+.g5{ color:#34a853; }
+.g6{ color:#ea4335; }
+
+.fx-label{
+  font-size:13px;
+  color:#a4b2ae;
+}
+
+.rate-line{
+  font-size:31px;
+  font-weight:600;
+  color:#a4b2ae;
+  letter-spacing:-1.2px;
+}
+
+.rate-line .rate-inr{
+  color:#fffcf5;
+  font-weight:700;
+}
+
+/* Label */
+.send-label{
+  font-size:14px;
+  color:#a4b2ae;
+  margin-bottom:10px;
+}
+
+.send-label strong{
+  color:#fffcf5;
+  font-weight:700;
+}
+
+/* Providers */
+.providers{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.pcard{
+  background:#0d120e;
+  border:1.5px solid #2d3a35;
+  border-radius:20px;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:62px;
+}
+
+.pcard.panda-card{
+  background:rgba(12,26,21,0.7);
+  border:1.5px solid rgba(150,207,184,0.28);
+  box-shadow:0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* Panda */
+.pm-logo{
+  font-size:16px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+
+.pm-icon{
+  color:#fffcf5;
+}
+
+.pm-white{
+  color:#fffcf5;
+}
+
+.pm-gold{
+  color:#c9a368;
+}
+
+/* Competitor */
+.comp-logo{
+  font-size:13px;
+  font-weight:700;
+  color:#fffcf5;
+}
+
+.right-col{
+  text-align:right;
+}
+
+.panda-amount{
+  font-size:20px;
+  font-weight:700;
+  color:#66cc84;
+}
+
+/* Difference */
+.comp-diff-row{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:3px;
+}
+
+.diff-arrow{
+  width:0;
+  height:0;
+  border-left:4px solid transparent;
+  border-right:4px solid transparent;
+  border-top:6px solid #f28282;
+}
+
+.diff-val{
+  font-size:15px;
+  font-weight:700;
+  color:#f28282;
+}
+
+.comp-total{
+  font-size:11.5px;
+  font-weight:600;
+  color:#ffd9d9;
+  margin-top:3px;
+}
+
+/* Status */
+.status{
+  text-align:center;
+  color:#a4b2ae;
+  font-size:13px;
+  padding:16px 0;
+}
+
+.status.err{
+  color:#f28282;
+}
+
+/* Time */
+.ts{
+  margin-top:auto;
+  text-align:center;
+  font-size:10px;
+  color:#3d5248;
+  padding-top:8px;
+}
+
+/* Refresh */
+.refresh{
+  position:absolute;
+  bottom:16px;
+  right:18px;
+  background:#0f3024;
+  border:1px solid rgba(102,204,132,0.3);
+  color:#66cc84;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:11px;
+  font-weight:600;
+  padding:7px 14px;
+  border-radius:50px;
+  cursor:pointer;
+  z-index:10;
+}
+
+.refresh:hover{
+  background:#163d2d;
+}
+
+
+.pm-logo{
+  display:flex;
+  align-items:center;
+}
+
+.pm-logo-img{
+  height:22px;
+  width:auto;
+  object-fit:contain;
+  display:block;
+}
+
+
+.comp-logo{
+  display:flex;
+  align-items:center;
+}
+
+.wise-logo-img{
+  height:28px;
+  width:auto;
+  object-fit:contain;
+  display:block;
+}
+
+
+.comp-logo{
+  display:flex;
+  align-items:center;
+}
+
+.wise-logo-img{
+  height:15px;
+  width:auto;
+  object-fit:contain;
+  display:block;
+}
+
+
+.comp-logo{
+  display:flex;
+  align-items:left;
+}
+
+.remitly-logo-img{
+  height:40px;
+  width:auto;
+  object-fit:contain;
+  display:block;
+  margin-left: -12px;
+}
+
+.comp-logo{
+  display:flex;
+  align-items:left;
+}
+
+.revolut-logo-img{
+  height:15px;
+  width:auto;
+  object-fit:contain;
+  display:block;
+}
+
+
+
+
+

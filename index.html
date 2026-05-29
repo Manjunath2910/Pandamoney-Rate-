@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PandaMoney Rate Story</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="story">
+
+  <!-- Hexagon badge -->
+  ```html id="5v8xgq"
+<!-- Rupee Badge -->
+<div class="hex-badge">
+
+  <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+
+    <defs>
+
+      <!-- Gradient -->
+      <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#1a3d2a"/>
+        <stop offset="100%" stop-color="#0b1c14"/>
+      </linearGradient>
+
+      <!-- Shadow -->
+      <filter id="badgeShadow" x="-100%" y="-100%" width="300%" height="300%">
+        <feDropShadow
+          dx="0"
+          dy="8"
+          stdDeviation="8"
+          flood-color="#000"
+          flood-opacity="0.6"
+        />
+      </filter>
+
+    </defs>
+
+    <!-- Nonagon Shape -->
+    <polygon
+      filter="url(#badgeShadow)"
+      points="
+        60,6
+        92,16
+        112,42
+        112,78
+        92,104
+        60,114
+        28,104
+        8,78
+        8,42
+        28,16
+      "
+      fill="url(#badgeGrad)"
+      
+      stroke-width="2"
+      stroke-linejoin="round"
+    />
+
+    <!-- Inner Glow -->
+    <polygon
+      points="
+        60,12
+        88,20
+        104,44
+        104,76
+        88,100
+        60,108
+        32,100
+        16,76
+        16,44
+        32,20
+      "
+     fill="rgba(16,34,27,0.92)"
+    />
+
+    <!-- Rupee -->
+    <text
+      x="60"
+      y="73"
+      text-anchor="middle"
+      font-size="42"
+      font-weight="800"
+      fill="#46dd72"
+      font-family="Plus Jakarta Sans, sans-serif"
+    >
+      ₹
+    </text>
+
+  </svg>
+
+</div>
+```
+
+
+  <div class="content">
+
+    <!-- Headline -->
+    <p class="headline">
+      Closer to <b>Google</b><br>
+      Closer to <b>Home</b>
+    </p>
+
+    <!-- Google Card -->
+    <div class="google-card">
+
+      <div class="google-tag-row">
+        <div class="green-dot"></div>
+
+        <div class="google-wordmark">
+          <span class="g1">G</span>
+          <span class="g2">o</span>
+          <span class="g3">o</span>
+          <span class="g4">g</span>
+          <span class="g5">l</span>
+          <span class="g6">e</span>
+        </div>
+
+        <span class="fx-label">FX Rate Today</span>
+      </div>
+
+      <div class="rate-line" id="rate-line">
+        <span style="color:#a4b2ae">$1 = </span>
+        <span class="rate-inr" id="rate-val">—</span>
+      </div>
+
+    </div>
+
+    <!-- Label -->
+    <p class="send-label">
+      For sending <strong>$1000,</strong>
+    </p>
+
+    <!-- Providers -->
+    <div class="providers" id="providers">
+      <div class="status">Fetching live rates…</div>
+    </div>
+
+    <!-- Time -->
+    <p class="ts" id="ts"></p>
+
+  </div>
+
+  <!-- Refresh -->
+  <button class="refresh" onclick="init()">↻ Refresh</button>
+
+</div>
+
+<!-- JS -->
+<script src="script.js"></script>
+
+</body>
+</html>
