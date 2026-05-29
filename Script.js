@@ -107,8 +107,6 @@ function compCardHTML(type, pandaAmt, theirAmt){
 
 
 
-
-
 async function init(){
 
   document.getElementById('rate-val').textContent = '…';
@@ -120,49 +118,35 @@ async function init(){
 
   try{
 
-    /* YOUR WISE API KEY */
-    const API_KEY = '17b1063b-3f5c-421d-bcc1-7b19f6acc8cf';
-
-    const response = await fetch(
-      'https://api.wise.com/v1/rates?source=USD&target=INR',
+    /* LIVE FOREX RATE */
+    const res = await fetch(
+      `https://open.er-api.com/v6/latest/USD?t=${Date.now()}`,
       {
-        method:'GET',
-
-        headers:{
-          'Authorization': `Bearer ${API_KEY}`,
-          'Content-Type':'application/json'
-        }
+        cache:'no-store'
       }
     );
 
-    if(!response.ok){
-      throw new Error('Wise API Error');
-    }
+    const data = await res.json();
 
-    const data = await response.json();
+    const liveRate = data.rates.INR;
 
-    /* LIVE RATE */
-    let liveRate = data[0].rate;
+    /* RANDOM MICRO MOVEMENT */
+    const movement =
+      (Math.random() * 0.18 - 0.09);
 
-    /* OPTIONAL SMALL LIVE MOVEMENT */
-    liveRate += (
-      Math.random() * 0.04 - 0.02
-    );
+    const finalRate =
+      liveRate + movement;
 
-    renderFallback(liveRate);
+    renderFallback(finalRate);
 
-  }catch(error){
+  }catch(e){
 
-    console.log(error);
+    console.log(e);
 
     document.getElementById('providers').innerHTML =
-      '<div class="status err">Could not load live rates</div>';
-
+      '<div class="status err">Could not load rates.</div>';
   }
-
 }
-
-
 
 
 
@@ -251,10 +235,6 @@ init();
 /* Auto refresh every 30 seconds */
 init();
 
-
-init();
-
 setInterval(() => {
   init();
 }, 5000);
-

@@ -1,26 +1,29 @@
 
-export default async function handler(req, res){
+export default async function handler(req, res) {
 
-  try{
+  try {
 
     const response = await fetch(
       'https://api.wise.com/v1/rates?source=USD&target=INR',
       {
-        headers:{
-          Authorization:
-            'Bearer YOUR_WISE_API_KEY'
+        headers: {
+          Authorization: `Bearer ${process.env.WISE_API_KEY}`
         }
       }
     );
 
     const data = await response.json();
 
-    res.status(200).json(data);
+    return res.status(200).json({
+      success: true,
+      rate: data[0].rate
+    });
 
-  }catch(error){
+  } catch (error) {
 
-    res.status(500).json({
-      error:'Failed to fetch rates'
+    return res.status(500).json({
+      success: false,
+      error: error.message
     });
 
   }
