@@ -108,6 +108,7 @@ function compCardHTML(type, pandaAmt, theirAmt){
 
 
 
+
 async function init(){
 
   document.getElementById('rate-val').textContent = '…';
@@ -119,22 +120,33 @@ async function init(){
 
   try{
 
-    /* STABLE LIVE API */
+    /* YOUR WISE API KEY */
+    const API_KEY = '17b1063b-3f5c-421d-bcc1-7b19f6acc8cf';
+
     const response = await fetch(
-      'https://api.exchangerate-api.com/v4/latest/USD',
+      'https://api.wise.com/v1/rates?source=USD&target=INR',
       {
         method:'GET',
-        cache:'no-store'
+
+        headers:{
+          'Authorization': `Bearer ${API_KEY}`,
+          'Content-Type':'application/json'
+        }
       }
     );
 
+    if(!response.ok){
+      throw new Error('Wise API Error');
+    }
+
     const data = await response.json();
 
-    let liveRate = data.rates.INR;
+    /* LIVE RATE */
+    let liveRate = data[0].rate;
 
-    /* SMALL LIVE MOVEMENT */
+    /* OPTIONAL SMALL LIVE MOVEMENT */
     liveRate += (
-      Math.random() * 0.10 - 0.05
+      Math.random() * 0.04 - 0.02
     );
 
     renderFallback(liveRate);
@@ -144,11 +156,13 @@ async function init(){
     console.log(error);
 
     document.getElementById('providers').innerHTML =
-      '<div class="status err">Rate unavailable</div>';
+      '<div class="status err">Could not load live rates</div>';
 
   }
 
 }
+
+
 
 
 
