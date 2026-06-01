@@ -246,3 +246,152 @@ init();
 setInterval(() => {
   init();
 }, 5000);
+
+async function downloadImages(){
+
+  const card = document.querySelector('.story');
+
+  /* STORY 9:16 */
+  const storyCanvas = await html2canvas(card,{
+    scale:3,
+    backgroundColor:null
+  });
+
+  const storyLink = document.createElement('a');
+  storyLink.download = 'pandamoney-story-9x16.png';
+  storyLink.href = storyCanvas.toDataURL('image/png');
+  storyLink.click();
+
+  /* POST 1:1 */
+  const squareCanvas = document.createElement('canvas');
+
+  squareCanvas.width = 1080;
+  squareCanvas.height = 1080;
+
+  const ctx = squareCanvas.getContext('2d');
+
+  ctx.fillStyle = '#060d0b';
+  ctx.fillRect(0,0,1080,1080);
+
+  const img = new Image();
+
+  img.onload = () => {
+
+    const w = 850;
+    const h = 1080 * (693 / 1920);
+
+    ctx.drawImage(
+      img,
+      (1080 - w) / 2,
+      (1080 - h) / 2,
+      w,
+      h
+    );
+
+    const postLink = document.createElement('a');
+    postLink.download = 'pandamoney-post-1x1.png';
+    postLink.href = squareCanvas.toDataURL('image/png');
+    postLink.click();
+  };
+
+  img.src = storyCanvas.toDataURL('image/png');
+}
+
+async function downloadPost() {
+
+  const card = document.querySelector('.container');
+
+  const oldWidth = card.style.width;
+  const oldScale = card.style.transform;
+
+  /* Make card fill square post */
+  card.style.width = '1000px';
+  card.style.transform = 'scale(1.35)';
+
+  const canvas = await html2canvas(card, {
+    scale: 2,
+    useCORS: true
+  });
+
+  card.style.width = oldWidth;
+  card.style.transform = oldScale;
+
+  const link = document.createElement('a');
+  link.download = 'pandamoney-post.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+async function downloadImages() {
+
+  const story = document.querySelector('.story');
+
+  /* STORY 9:16 */
+  const storyCanvas = await html2canvas(story,{
+  scale:3,
+  useCORS:true,
+  backgroundColor:"#060d0b",
+  ignoreElements: (element) => {
+    return element.classList.contains('refresh');
+  }
+});
+
+  const storyLink = document.createElement('a');
+  storyLink.download = 'pandamoney-story-9x16.png';
+  storyLink.href = storyCanvas.toDataURL('image/png');
+  storyLink.click();
+
+ 
+
+  /* POST 1:1 */
+  const postCanvas = document.createElement('canvas');
+
+  postCanvas.width = 1080;
+  postCanvas.height = 1080;
+
+  const ctx = postCanvas.getContext('2d');
+  ignoreElements: (element) => {
+    return element.classList.contains('refresh');
+  }
+
+  /* Background */
+  ctx.fillStyle = '#060d0b';
+  ctx.fillRect(0, 0, 1080, 1080);
+
+  /* Center story inside square */
+  const img = new Image();
+
+  img.onload = () => {
+
+    const maxWidth = 1020;
+    const maxHeight = 1020;
+
+    const ratio = Math.min(
+      maxWidth / img.width,
+      maxHeight / img.height
+    );
+
+    const w = img.width * ratio;
+    const h = img.height * ratio;
+
+    const x = (1080 - w) / 2;
+    const y = (1080 - h) / 2;
+
+    ctx.drawImage(img, x, y, w, h);
+
+    const postLink = document.createElement('a');
+    postLink.download = 'pandamoney-post-1x1.png';
+    postLink.href = postCanvas.toDataURL('image/png');
+    postLink.click();
+  };
+
+  img.src = storyCanvas.toDataURL('image/png');
+}
+
+
+
+init();
+
+setInterval(() => {
+  init();
+}, 5000);

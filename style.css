@@ -277,7 +277,7 @@ body{
 /* Refresh */
 .refresh{
   position:absolute;
-  bottom:16px;
+  bottom:28px;
   right:18px;
   background:#0f3024;
   border:1px solid rgba(102,204,132,0.3);
@@ -358,6 +358,76 @@ body{
   width:auto;
   object-fit:contain;
   display:block;
+}
+
+.download-btn{
+  position:absolute;
+  bottom:1px;
+  left:580px;
+
+  background:#0f3024;
+  border:1px solid rgba(102,204,132,.3);
+
+  color:#66cc84;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:11px;
+  font-weight:600;
+
+  padding:7px 14px;
+  border-radius:50px;
+  cursor:pointer;
+
+  z-index:10;
+}
+
+.download-btn:hover{
+  background:#163d2d;
+}
+
+.card{
+   width:90%;
+   max-width:950px;
+}
+
+#postCapture{
+    width:1080px;
+    height:1080px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#postCapture .container{
+    transform:scale(1.6);
+}
+
+/* Instagram Post Layout */
+#post-layout{
+  position:fixed;
+  left:-99999px;
+  top:0;
+
+  width:1080px;
+  height:1080px;
+
+  background:#060d0b;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  overflow:hidden;
+}
+
+#post-layout .story{
+  width:390px !important;
+  height:693px !important;
+
+  transform:scale(1.45);
+  transform-origin:center center;
+
+  margin:0;
 }
 
 
