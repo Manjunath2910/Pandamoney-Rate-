@@ -430,6 +430,29 @@ body{
   margin:0;
 }
 
+@media (max-width: 768px){
+
+  body{
+    padding:10px;
+  }
+
+  .story{
+    width:100%;
+    max-width:390px;
+    height:auto;
+    aspect-ratio:390/693;
+  }
+
+  .download-btn{
+    position:fixed;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:15px;
+    z-index:9999;
+  }
+
+}
+
 
 
 
