@@ -118,6 +118,8 @@ async function init(){
 
   try{
 
+    console.log('Fetching live rate...');
+
     const res = await fetch(
       'https://open.er-api.com/v6/latest/USD',
       {
@@ -125,11 +127,15 @@ async function init(){
       }
     );
 
+    console.log('Status:', res.status);
+
     if(!res.ok){
       throw new Error('API Error');
     }
 
     const data = await res.json();
+
+    console.log('API Response:', data);
 
     if(!data.rates || !data.rates.INR){
       throw new Error('INR rate not found');
@@ -137,7 +143,6 @@ async function init(){
 
     let liveRate = Number(data.rates.INR);
 
-    /* Small movement for visual updates */
     liveRate += (Math.random() * 0.10 - 0.05);
 
     renderFallback(liveRate);
@@ -145,7 +150,7 @@ async function init(){
   }
   catch(error){
 
-    console.error(error);
+    console.error('Rate Error:', error);
 
     document.getElementById('providers').innerHTML =
       '<div class="status err">Could not load live rates.</div>';
@@ -236,7 +241,6 @@ document.getElementById('providers').innerHTML =
 
 
 
-/* Auto refresh every 30 seconds */
 init();
 
 setInterval(() => {
