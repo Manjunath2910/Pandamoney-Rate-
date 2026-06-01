@@ -338,6 +338,15 @@ async function downloadImages() {
   storyLink.href = storyCanvas.toDataURL('image/png');
   storyLink.click();
 
+  setTimeout(() => {
+
+  const postLink = document.createElement('a');
+  postLink.download = 'pandamoney-post-1x1.png';
+  postLink.href = postCanvas.toDataURL('image/png');
+  postLink.click();
+
+}, 2000);
+
  
 
   /* POST 1:1 */
