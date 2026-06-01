@@ -328,7 +328,7 @@ async function downloadImages() {
 
   /* STORY 9:16 */
   const storyCanvas = await html2canvas(story,{
-  scale:3,
+  scale: window.devicePixelRatio > 2 ? 3 : 2,
   useCORS:true,
   backgroundColor:"#060d0b",
   ignoreElements: (element) => {
@@ -386,7 +386,40 @@ async function downloadImages() {
   };
 
   img.src = storyCanvas.toDataURL('image/png');
+
+  const zip = new JSZip();
+
+zip.file(
+  "pandamoney-story-9x16.png",
+  storyCanvas.toDataURL("image/png").split(',')[1],
+  {base64:true}
+);
+
+zip.file(
+  "pandamoney-post-1x1.png",
+  postCanvas.toDataURL("image/png").split(',')[1],
+  {base64:true}
+);
+
+const content = await zip.generateAsync({type:"blob"});
+
+const link = document.createElement('a');
+link.href = URL.createObjectURL(content);
+link.download = "pandamoney-images.zip";
+link.click();
 }
+
+storyLink.click();
+
+setTimeout(() => {
+
+  const postLink = document.createElement('a');
+  postLink.download = 'pandamoney-post-1x1.png';
+  postLink.href = postCanvas.toDataURL('image/png');
+  postLink.click();
+
+}, 1500);
+
 
 
 
