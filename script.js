@@ -149,14 +149,11 @@ async function init(){
 
   }
   catch(error){
+  console.error(error);
 
-    console.error('Rate Error:', error);
-
-    document.getElementById('providers').innerHTML =
-      '<div class="status err">Could not load live rates.</div>';
-
-    document.getElementById('rate-val').textContent = '--';
-  }
+  document.getElementById('ts').textContent =
+    'Using last available rate';
+}
 }
 
 function renderFallback(midRate){
@@ -427,4 +424,4 @@ init();
 
 setInterval(() => {
   init();
-}, 5000);
+}, 30000); // 30 seconds
