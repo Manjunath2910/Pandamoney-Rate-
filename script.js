@@ -333,17 +333,23 @@ async function downloadImages() {
   }
 });
 
-  const storyLink = document.createElement('a');
-  storyLink.download = 'pandamoney-story-9x16.png';
-  storyLink.href = storyCanvas.toDataURL('image/png');
-  storyLink.click();
+  /* STORY DOWNLOAD */
+const storyLink = document.createElement('a');
+storyLink.download = 'pandamoney-story-9x16.png';
+storyLink.href = storyCanvas.toDataURL('image/png');
+document.body.appendChild(storyLink);
+storyLink.click();
+document.body.removeChild(storyLink);
 
-  setTimeout(() => {
+/* WAIT THEN DOWNLOAD POST */
+setTimeout(() => {
 
   const postLink = document.createElement('a');
   postLink.download = 'pandamoney-post-1x1.png';
   postLink.href = postCanvas.toDataURL('image/png');
+  document.body.appendChild(postLink);
   postLink.click();
+  document.body.removeChild(postLink);
 
 }, 2000);
 
