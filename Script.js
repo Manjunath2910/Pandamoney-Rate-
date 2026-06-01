@@ -109,46 +109,50 @@ function compCardHTML(type, pandaAmt, theirAmt){
 
 async function init(){
 
-  document.getElementById('rate-val').textContent = '…';
+  document.getElementById('rate-val').textContent = '...';
 
   document.getElementById('providers').innerHTML =
-    '<div class="status">Fetching live rates…</div>';
+    '<div class="status">Fetching live rates...</div>';
 
   document.getElementById('ts').textContent = '';
 
   try{
 
-    /* LIVE FOREX RATE */
     const res = await fetch(
-      `https://open.er-api.com/v6/latest/USD?t=${Date.now()}`,
+      'https://open.er-api.com/v6/latest/USD',
       {
-        cache:'no-store'
+        cache: 'no-store'
       }
     );
 
+    if(!res.ok){
+      throw new Error('API Error');
+    }
+
     const data = await res.json();
 
-    const liveRate = data.rates.INR;
+    if(!data.rates || !data.rates.INR){
+      throw new Error('INR rate not found');
+    }
 
-    /* RANDOM MICRO MOVEMENT */
-    const movement =
-      (Math.random() * 0.18 - 0.09);
+    let liveRate = Number(data.rates.INR);
 
-    const finalRate =
-      liveRate + movement;
+    /* Small movement for visual updates */
+    liveRate += (Math.random() * 0.10 - 0.05);
 
-    renderFallback(finalRate);
+    renderFallback(liveRate);
 
-  }catch(e){
+  }
+  catch(error){
 
-    console.log(e);
+    console.error(error);
 
     document.getElementById('providers').innerHTML =
-      '<div class="status err">Could not load rates.</div>';
+      '<div class="status err">Could not load live rates.</div>';
+
+    document.getElementById('rate-val').textContent = '--';
   }
 }
-
-
 
 function renderFallback(midRate){
 
@@ -230,7 +234,7 @@ document.getElementById('providers').innerHTML =
     })} IST`;
 }
 
-init();
+
 
 /* Auto refresh every 30 seconds */
 init();
