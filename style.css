@@ -279,7 +279,7 @@ body{
 /* Refresh */
 .refresh{
   position:absolute;
-  bottom:28px;
+  bottom:30px;
   right:18px;
   background:#0f3024;
   border:1px solid rgba(102,204,132,0.3);
@@ -454,7 +454,7 @@ body{
 
   .download-btn{
     position:fixed;
-    bottom:15px;
+    bottom:20px;
     left:50%;
     transform:translateX(-50%);
     z-index:9999;
