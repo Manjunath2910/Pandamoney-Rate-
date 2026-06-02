@@ -244,56 +244,69 @@ setInterval(() => {
   init();
 }, 5000);
 
-async function downloadImages(){
+async function downloadImages() {
 
-  const card = document.querySelector('.story');
-
-  /* STORY 9:16 */
-  const storyCanvas = await html2canvas(card,{
-    scale:3,
-    backgroundColor:null
+  /* Create story image */
+  const storyCanvas = await html2canvas(document.querySelector('.story'), {
+    scale: 3,
+    useCORS: true,
+    backgroundColor: "#060d0b",
+    ignoreElements: (el) => el.classList.contains('refresh')
   });
 
+  /* Download Story */
   const storyLink = document.createElement('a');
-  storyLink.download = 'pandamoney-story-9x16.png';
   storyLink.href = storyCanvas.toDataURL('image/png');
+  storyLink.download = 'pandamoney-story-9x16.png';
+  document.body.appendChild(storyLink);
   storyLink.click();
+  document.body.removeChild(storyLink);
 
-  /* POST 1:1 */
-  const squareCanvas = document.createElement('canvas');
+  /* Wait 3 seconds */
+  setTimeout(() => {
 
-  squareCanvas.width = 1080;
-  squareCanvas.height = 1080;
+    /* Create Post */
+    const postCanvas = document.createElement('canvas');
+    postCanvas.width = 1080;
+    postCanvas.height = 1080;
 
-  const ctx = squareCanvas.getContext('2d');
+    const ctx = postCanvas.getContext('2d');
+    ctx.fillStyle = '#060d0b';
+    ctx.fillRect(0, 0, 1080, 1080);
 
-  ctx.fillStyle = '#060d0b';
-  ctx.fillRect(0,0,1080,1080);
+    const img = new Image();
 
-  const img = new Image();
+    img.onload = () => {
 
-  img.onload = () => {
+      const ratio = Math.min(
+        1020 / img.width,
+        1020 / img.height
+      );
 
-    const w = 850;
-    const h = 1080 * (693 / 1920);
+      const w = img.width * ratio;
+      const h = img.height * ratio;
 
-    ctx.drawImage(
-      img,
-      (1080 - w) / 2,
-      (1080 - h) / 2,
-      w,
-      h
-    );
+      ctx.drawImage(
+        img,
+        (1080 - w) / 2,
+        (1080 - h) / 2,
+        w,
+        h
+      );
 
-    const postLink = document.createElement('a');
-    postLink.download = 'pandamoney-post-1x1.png';
-    postLink.href = squareCanvas.toDataURL('image/png');
-    postLink.click();
-  };
+      const postLink = document.createElement('a');
+      postLink.href = postCanvas.toDataURL('image/png');
+      postLink.download = 'pandamoney-post-1x1.png';
+      document.body.appendChild(postLink);
+      postLink.click();
+      document.body.removeChild(postLink);
 
-  img.src = storyCanvas.toDataURL('image/png');
+    };
+
+    img.src = storyCanvas.toDataURL('image/png');
+
+  }, 3000);
 }
-
 async function downloadPost() {
 
   const card = document.querySelector('.container');
