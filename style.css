@@ -452,20 +452,21 @@ body{
     font-size:28px;
   }
 
-  .download-btn{
+   .download-btn{
     position:fixed;
-    bottom:20px;
-    left:50%;
-    transform:translateX(-50%);
+    bottom:15px;
+    left:15px;
+    transform:none;
     z-index:9999;
   }
 
+}
   .refresh{
     bottom:20px;
     right:15px;
   }
 
-}
+
 
 
 
