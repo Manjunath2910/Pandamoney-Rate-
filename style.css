@@ -454,7 +454,7 @@ body{
 
    .download-btn{
     position:fixed;
-    bottom:15px;
+    bottom:20px;
     left:15px;
     transform:none;
     z-index:9999;
