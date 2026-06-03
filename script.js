@@ -170,6 +170,22 @@ function renderFallback(midRate){
     remitlyRecv,
     revolutRecv
   );
+
+  const now = new Date();
+
+const date = now.toLocaleDateString('en-IN', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric'
+});
+
+const time = now.toLocaleTimeString('en-IN', {
+  hour: '2-digit',
+  minute: '2-digit'
+});
+
+document.getElementById('ts').textContent =
+  `${date} • ${time} IST`;
 }
 
 function displayRates(
@@ -228,6 +244,7 @@ document.getElementById('providers').innerHTML =
 
 
   const now = new Date();
+  
 
   document.getElementById('ts').textContent =
     `Live rates · ${now.toLocaleTimeString('en-IN',{
@@ -236,6 +253,21 @@ document.getElementById('providers').innerHTML =
     })} IST`;
 }
 
+const now = new Date();
+
+const date = now.toLocaleDateString('en-IN',{
+  day:'2-digit',
+  month:'short',
+  year:'numeric'
+});
+
+const time = now.toLocaleTimeString('en-IN',{
+  hour:'2-digit',
+  minute:'2-digit'
+});
+
+document.getElementById('ts').textContent =
+  `${date} • ${time} IST`;
 
 
 init();

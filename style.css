@@ -272,8 +272,9 @@ body{
   margin-top:auto;
   text-align:center;
   font-size:10px;
-  color:#3d5248;
+  color:white; /* darker */
   padding-top:8px;
+  font-weight:500;
 }
 
 /* Refresh */
